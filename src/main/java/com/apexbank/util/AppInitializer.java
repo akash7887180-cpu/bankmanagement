@@ -37,8 +37,8 @@ public class AppInitializer implements ServletContextListener {
             } else {
                 System.out.println("[ApexBank] Database tables already present and ready.");
             }
-        } catch (Exception e) {
-            System.err.println("[ApexBank] Database initialization check: " + e.getMessage());
+        } catch (Throwable t) {
+            System.err.println("[ApexBank] Database initialization check note: " + t.getMessage());
         }
     }
 
