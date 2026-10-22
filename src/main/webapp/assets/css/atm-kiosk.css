@@ -1,0 +1,333 @@
+/* =============================================================================
+   Apex ATM Machine Hardware Interface Simulator
+   Realistic physical ATM casing, bezel buttons, and tactile metallic keypad
+   ============================================================================= */
+
+.atm-machine-container {
+    background: radial-gradient(circle at 50% 20%, #334155 0%, #0f172a 100%);
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    max-width: 980px;
+    margin: 20px auto;
+    border: 3px solid #475569;
+    position: relative;
+}
+
+/* Bank Header Banner on ATM */
+.atm-header-plate {
+    background: linear-gradient(180deg, #1e3a8a 0%, #0f172a 100%);
+    border: 2px solid #3b82f6;
+    border-radius: 12px;
+    padding: 12px 24px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.atm-terminal-badge {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.85rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid #1e40af;
+    color: #93c5fd;
+}
+
+/* Screen Section */
+.atm-screen-frame {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.atm-bezel-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: space-around;
+}
+
+.bezel-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #64748b 0%, #334155 100%);
+    border: 2px solid #1e293b;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.bezel-btn:active, .bezel-btn.pressed {
+    transform: translateY(2px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.6), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.bezel-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ATM CRT Screen */
+.atm-screen {
+    flex: 1;
+    min-height: 440px;
+    background: #022c22; /* Emerald phosphor CRT background */
+    border: 12px solid #1e293b;
+    border-radius: 20px;
+    box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(16, 185, 129, 0.15);
+    color: #a7f3d0;
+    font-family: "Courier New", Courier, monospace;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* CRT Scanline effect */
+.atm-screen::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.atm-screen-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.atm-screen-header {
+    border-bottom: 2px dashed #059669;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.atm-screen-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #6ee7b7;
+    letter-spacing: 1px;
+}
+
+.atm-screen-options {
+    display: flex;
+    justify-content: space-between;
+    margin: auto 0;
+}
+
+.screen-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 45%;
+}
+
+.screen-col.right {
+    text-align: right;
+}
+
+.atm-option-tag {
+    background: rgba(6, 78, 59, 0.6);
+    border: 1px solid #10b981;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ecfdf5;
+    display: block;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.atm-option-tag:hover {
+    background: #047857;
+    color: #ffffff;
+}
+
+/* Bottom Hardware Shelf: Keypad, Slots */
+.atm-hardware-shelf {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    border: 2px solid #334155;
+}
+
+/* Card Slot & Cash Slot */
+.atm-slots-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hardware-slot {
+    background: #0f172a;
+    border-radius: 10px;
+    padding: 16px;
+    border: 2px solid #475569;
+    position: relative;
+}
+
+.slot-opening {
+    height: 12px;
+    background: #020617;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.9);
+    position: relative;
+}
+
+.slot-opening.card-slot::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: -2px;
+    width: 6px;
+    height: 16px;
+    background: #22c55e;
+    border-radius: 2px;
+    box-shadow: 0 0 8px #22c55e;
+    animation: slotBlink 1.5s infinite;
+}
+
+.slot-opening.cash-slot::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 4px;
+    height: 4px;
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 2px;
+    box-shadow: 0 0 10px #3b82f6;
+}
+
+@keyframes slotBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+.slot-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Realistic ATM Keypad */
+.atm-keypad {
+    background: #0f172a;
+    border: 3px solid #475569;
+    border-radius: 12px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 320px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.key-btn {
+    height: 48px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #64748b;
+    box-shadow: 0 3px 0 #334155, 0 4px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.08s ease;
+    user-select: none;
+}
+
+.key-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #334155, 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.key-num {
+    background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%);
+    color: #0f172a;
+}
+
+.key-cancel {
+    background: linear-gradient(180deg, #ef4444 0%, #b91c1c 100%);
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+.key-clear {
+    background: linear-gradient(180deg, #f59e0b 0%, #b45309 100%);
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+.key-enter {
+    background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+    color: #ffffff;
+    font-size: 0.8rem;
+}
+
+/* Cash Dispensing Animation */
+.cash-dispense-tray {
+    position: relative;
+    overflow: hidden;
+}
+
+.dispensed-notes {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 140px;
+    height: 60px;
+    background: #86efac;
+    border: 2px dashed #166534;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #14532d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.dispensed-notes.dispensing {
+    transform: translateX(-50%) translateY(0);
+}

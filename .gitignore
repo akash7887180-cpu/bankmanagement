@@ -1,0 +1,25 @@
+# Compiled class files
+target/
+*.log
+atm_session.txt
+atm_dash*.html
+cookies.txt
+
+# Eclipse / IDE metadata
+.metadata
+.project
+.classpath
+.settings/
+.idea/
+*.iml
+
+# Allow tracking WEB-INF/lib jars for zero-config deployment
+*.jar
+!src/main/webapp/WEB-INF/lib/*.jar
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
