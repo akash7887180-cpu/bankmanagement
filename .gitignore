@@ -5,6 +5,10 @@ atm_session.txt
 atm_dash*.html
 cookies.txt
 
+# Binaries
+cloudflared.exe
+*.exe
+
 # Eclipse / IDE metadata
 .metadata
 .project
