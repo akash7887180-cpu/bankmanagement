@@ -15,8 +15,15 @@
   </GlobalNamingResources>
 
   <Service name="Catalina">
-    <!-- Expose HTTP only on port 8080 -->
+    <!-- Listen on port 8080 -->
     <Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443"
+               maxParameterCount="1000"
+               URIEncoding="UTF-8" />
+
+    <!-- Also listen on port 10000 (Render default port) -->
+    <Connector port="10000" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="8443"
                maxParameterCount="1000"
