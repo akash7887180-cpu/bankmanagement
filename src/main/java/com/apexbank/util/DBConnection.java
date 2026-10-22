@@ -17,9 +17,23 @@ public class DBConnection {
 
     private DBConnection() {
         String driver = ConfigReader.get("db.driver", "com.mysql.cj.jdbc.Driver");
-        this.url = ConfigReader.get("db.url", "jdbc:mysql://localhost:3306/apex_bank_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
-        this.username = ConfigReader.get("db.username", "root");
-        this.password = ConfigReader.get("db.password", "root");
+
+        // Automatic support for Railway, Render, and Cloud MySQL environment variables
+        String mysqlHost = System.getenv("MYSQLHOST");
+        String mysqlPort = System.getenv("MYSQLPORT");
+        String mysqlUser = System.getenv("MYSQLUSER");
+        String mysqlPassword = System.getenv("MYSQLPASSWORD");
+        String mysqlDatabase = System.getenv("MYSQLDATABASE");
+
+        if (mysqlHost != null && !mysqlHost.trim().isEmpty()) {
+            this.url = "jdbc:mysql://" + mysqlHost + ":" + (mysqlPort != null ? mysqlPort : "3306") + "/" + (mysqlDatabase != null ? mysqlDatabase : "railway") + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8";
+            this.username = mysqlUser != null ? mysqlUser : "root";
+            this.password = mysqlPassword != null ? mysqlPassword : "";
+        } else {
+            this.url = ConfigReader.get("db.url", "jdbc:mysql://localhost:3306/apex_bank_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
+            this.username = ConfigReader.get("db.username", "root");
+            this.password = ConfigReader.get("db.password", "root");
+        }
 
         try {
             Class.forName(driver);
