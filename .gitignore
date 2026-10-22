@@ -17,9 +17,10 @@ cloudflared.exe
 .idea/
 *.iml
 
-# Allow tracking WEB-INF/lib jars for zero-config deployment
+# Allow tracking WEB-INF/lib jars and ROOT.war for zero-config deployment
 *.jar
 !src/main/webapp/WEB-INF/lib/*.jar
+!ROOT.war
 
 # OS generated files
 Thumbs.db
