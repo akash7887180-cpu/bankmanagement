@@ -1,11 +1,16 @@
 # Production Dockerfile for Apex Bank Management System (Standalone Tomcat + MariaDB)
 FROM tomcat:9.0-jdk17-temurin
 
-# Install MariaDB server (MySQL drop-in replacement)
+# Install MariaDB server (MySQL drop-in replacement) and procps
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     mariadb-server mariadb-client procps \
     && rm -rf /var/lib/apt/lists/*
+
+# Pre-create run directories and initialize mysql data directory
+RUN mkdir -p /var/run/mysqld /var/lib/mysql && \
+    chown -R mysql:mysql /var/run/mysqld /var/lib/mysql && \
+    mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 # Optimize MariaDB memory for Render's 512MB RAM free tier (<60MB footprint)
 RUN mkdir -p /etc/mysql/mariadb.conf.d && \
