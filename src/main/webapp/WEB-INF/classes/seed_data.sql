@@ -24,33 +24,36 @@ VALUES
 (1, 'John', 'Doe', 'john.doe@example.com', '9876543210', '1990-05-15', 'MALE', 'Flat 402, Skyline Towers, Sector 18', 'Gurugram', 'Haryana', '122002', 'AADHAAR', '4521-8974-1234'),
 (2, 'Priya', 'Sharma', 'priya.sharma@example.com', '9811223344', '1994-08-22', 'FEMALE', 'B-12/4, Green Glen Layout, Bellandur', 'Bengaluru', 'Karnataka', '560103', 'PAN', 'ABCPS8921K'),
 (3, 'Rahul', 'Verma', 'rahul.verma@example.com', '9988776655', '1988-12-03', 'MALE', '104, Marina View Apartments, Marine Lines', 'Mumbai', 'Maharashtra', '400020', 'PASSPORT', 'M8472910'),
-(4, 'Ananya', 'Iyer', 'ananya.iyer@example.com', '9712345678', '1996-03-30', 'FEMALE', '45, Cathedral Road, Gopalapuram', 'Chennai', 'Tamil Nadu', '600086', 'AADHAAR', '7890-1234-5678');
+(4, 'Ananya', 'Iyer', 'ananya.iyer@example.com', '9712345678', '1996-03-30', 'FEMALE', '45, Cathedral Road, Gopalapuram', 'Chennai', 'Tamil Nadu', '600086', 'AADHAAR', '7890-1234-5678'),
+(5, 'akash', 'm', 'akash123345@gmail.com', '9884987654', '2001-01-01', 'MALE', 'Anna Nagar', 'Chennai', 'Tamil Nadu', '600040', 'AADHAAR', '1122-3344-5566'),
+(6, 'MANOJ', 'S', 'manoj13234@gmail.com', '8939675434', '2000-05-20', 'MALE', 'T Nagar', 'Chennai', 'Tamil Nadu', '600017', 'AADHAAR', '4563-3566-7869-8970'),
+(8, 'Suresh', 'Kumar', 'suresh.k@gmail.com', '9123456789', '1995-05-15', 'MALE', '45 Anna Salai', 'Chennai', 'Tamil Nadu', '600001', 'AADHAAR', '123456789012');
 
 -- -----------------------------------------------------------------------------
 -- ACCOUNTS SEED DATA
--- Account 1: Savings (John Doe) - ₹58,450.00
--- Account 2: Current (Priya Sharma) - ₹1,25,000.00 (Overdraft limit ₹25,000)
--- Account 3: Savings (Rahul Verma) - ₹12,800.00
--- Account 4: Savings (Ananya Iyer) - ₹95,200.00
 -- -----------------------------------------------------------------------------
 INSERT INTO accounts (account_id, account_number, customer_id, account_type, balance, minimum_balance, interest_rate, overdraft_limit, status)
 VALUES 
 (1, '1001004521', 1, 'SAVINGS', 58450.00, 1000.00, 4.00, 0.00, 'ACTIVE'),
 (2, '1001008963', 2, 'CURRENT', 125000.00, 5000.00, 0.00, 25000.00, 'ACTIVE'),
 (3, '1001007741', 3, 'SAVINGS', 12800.00, 1000.00, 4.00, 0.00, 'ACTIVE'),
-(4, '1001003322', 4, 'SAVINGS', 95200.00, 1000.00, 4.00, 0.00, 'ACTIVE');
+(4, '1001003322', 4, 'SAVINGS', 95200.00, 1000.00, 4.00, 0.00, 'ACTIVE'),
+(5, '1001005511', 5, 'SAVINGS', 24500.00, 1000.00, 4.00, 0.00, 'ACTIVE'),
+(6, '1001006622', 6, 'SAVINGS', 10000.00, 1000.00, 4.00, 0.00, 'ACTIVE'),
+(8, '1001007788', 8, 'SAVINGS', 8000.00, 1000.00, 4.00, 0.00, 'ACTIVE');
 
 -- -----------------------------------------------------------------------------
 -- ATM CARDS SEED DATA
--- Default PIN for all cards: 1234
--- SHA-256 of "1234": 03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4
 -- -----------------------------------------------------------------------------
-INSERT INTO atm_cards (card_id, card_number, account_id, customer_id, card_type, pin_hash, pin_salt, expiry_date, cvv_hash, daily_limit, failed_pin_attempts, status)
+INSERT INTO atm_cards (card_id, card_number, account_id, customer_id, card_type, pin_hash, pin_salt, expiry_date, cvv_hash, daily_limit, failed_pin_attempts, status, pin_plain)
 VALUES 
-(1, '4532789012345678', 1, 1, 'DEBIT_RUPAY', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2029-12-31', '321', 40000.00, 0, 'ACTIVE'),
-(2, '5241890123456789', 2, 2, 'DEBIT_VISA', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2028-10-31', '654', 50000.00, 0, 'ACTIVE'),
-(3, '6071890123456789', 3, 3, 'DEBIT_MASTERCARD', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2027-06-30', '987', 40000.00, 0, 'ACTIVE'),
-(4, '4111222233334444', 4, 4, 'DEBIT_RUPAY', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2030-01-31', '147', 40000.00, 0, 'ACTIVE');
+(1, '4532789012345678', 1, 1, 'DEBIT_RUPAY', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2029-12-31', '321', 40000.00, 0, 'ACTIVE', '1234'),
+(2, '5241890123456789', 2, 2, 'DEBIT_VISA', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2028-10-31', '654', 50000.00, 0, 'ACTIVE', '1234'),
+(3, '6071890123456789', 3, 3, 'DEBIT_MASTERCARD', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2027-06-30', '987', 40000.00, 0, 'ACTIVE', '1234'),
+(4, '4111222233334444', 4, 4, 'DEBIT_RUPAY', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2030-01-31', '147', 40000.00, 0, 'ACTIVE', '1234'),
+(5, '4532998811223344', 5, 5, 'DEBIT_RUPAY', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2031-10-31', '321', 40000.00, 0, 'ACTIVE', '1234'),
+(6, '4532778899001122', 6, 6, 'DEBIT_RUPAY', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'salt123', '2031-10-31', '321', 40000.00, 0, 'ACTIVE', '1234'),
+(8, '4532889900112233', 8, 8, 'DEBIT_RUPAY', 'f3583ebb3592812331cf0f64bdb8e86cfc2d5ea6f01f2cebf773bdb3701e0a6f', 'salt123', '2031-10-31', '321', 40000.00, 0, 'ACTIVE', '5678');
 
 -- -----------------------------------------------------------------------------
 -- HISTORICAL TRANSACTIONS SEED DATA

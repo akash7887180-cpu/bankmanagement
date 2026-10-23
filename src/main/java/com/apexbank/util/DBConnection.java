@@ -32,7 +32,7 @@ public class DBConnection {
         } else {
             this.url = ConfigReader.get("db.url", "jdbc:mysql://localhost:3306/apex_bank_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC");
             this.username = ConfigReader.get("db.username", "root");
-            this.password = ConfigReader.get("db.password", "root");
+            this.password = ConfigReader.get("db.password", "");
         }
 
         try {
