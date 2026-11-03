@@ -120,6 +120,20 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     @Override
+    public boolean updateBalance(int accountId, double newBalance) {
+        String sql = "UPDATE accounts SET balance = ? WHERE account_id = ?";
+        try (Connection conn = DBConnection.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setDouble(1, newBalance);
+            ps.setInt(2, accountId);
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
     public boolean updateBalance(int accountId, double newBalance, Connection conn) {
         String sql = "UPDATE accounts SET balance = ? WHERE account_id = ?";
         PreparedStatement ps = null;

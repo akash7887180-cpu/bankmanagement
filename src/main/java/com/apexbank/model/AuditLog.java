@@ -21,6 +21,10 @@ public class AuditLog implements Serializable {
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
+    public AuditLog(String action, String performedBy, String details) {
+        this(action, performedBy, details, "127.0.0.1");
+    }
+
     public AuditLog(String action, String performedBy, String details, String ipAddress) {
         this();
         this.action = action;

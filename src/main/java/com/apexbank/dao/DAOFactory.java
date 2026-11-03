@@ -12,6 +12,8 @@ public class DAOFactory {
     private static final TransactionDAO transactionDAO = new TransactionDAOImpl();
     private static final AdminDAO adminDAO = new AdminDAOImpl();
     private static final AuditDAO auditDAO = new AuditDAOImpl();
+    private static final LoanDAO loanDAO = new LoanDAOImpl();
+    private static final SupportTicketDAO supportTicketDAO = new SupportTicketDAOImpl();
 
     public static CustomerDAO getCustomerDAO() {
         return customerDAO;
@@ -35,5 +37,13 @@ public class DAOFactory {
 
     public static AuditDAO getAuditDAO() {
         return auditDAO;
+    }
+
+    public static LoanDAO getLoanDAO() {
+        return loanDAO;
+    }
+
+    public static SupportTicketDAO getSupportTicketDAO() {
+        return supportTicketDAO;
     }
 }

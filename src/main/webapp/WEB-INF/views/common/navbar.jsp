@@ -52,6 +52,24 @@
                             <i class="bi bi-clock-history me-1"></i> Statement
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${pageContext.request.requestURI.contains('loans') ? 'active fw-bold' : ''}" 
+                           href="${pageContext.request.contextPath}/atm/loans">
+                            <i class="bi bi-bank text-warning me-1"></i> Loans
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${pageContext.request.requestURI.contains('support') ? 'active fw-bold' : ''}" 
+                           href="${pageContext.request.contextPath}/atm/support">
+                            <i class="bi bi-life-preserver text-danger me-1"></i> Support
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ${pageContext.request.requestURI.contains('chat') ? 'active fw-bold' : ''}" 
+                           href="${pageContext.request.contextPath}/atm/chat">
+                            <i class="bi bi-robot text-info me-1"></i> HelpBot
+                        </a>
+                    </li>
                 </ul>
 
                 <div class="d-flex align-items-center gap-2">
@@ -68,6 +86,24 @@
             </c:if>
 
             <c:if test="${empty sessionScope.SESSION_CARD and empty sessionScope.SESSION_ADMIN}">
+                <ul class="navbar-nav me-auto ms-lg-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/loans">
+                            <i class="bi bi-bank text-warning me-1"></i> Money &amp; Gold Loans
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/support">
+                            <i class="bi bi-life-preserver text-danger me-1"></i> Customer Helpdesk
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/chat">
+                            <i class="bi bi-robot text-info me-1"></i> Apex HelpBot AI
+                        </a>
+                    </li>
+                </ul>
+
                 <div class="ms-auto d-flex align-items-center gap-2">
                     <button class="theme-btn" id="themeToggleBtn" title="Toggle Dark/Light Mode">
                         <i class="bi bi-moon-stars-fill" id="themeIcon"></i>

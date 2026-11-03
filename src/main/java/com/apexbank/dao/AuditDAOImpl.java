@@ -17,6 +17,12 @@ import java.util.List;
 public class AuditDAOImpl implements AuditDAO {
 
     @Override
+    public void log(AuditLog log) {
+        if (log == null) return;
+        log(log.getAction(), log.getPerformedBy(), log.getDetails(), log.getIpAddress() != null ? log.getIpAddress() : "127.0.0.1");
+    }
+
+    @Override
     public void log(String action, String performedBy, String details, String ipAddress) {
         String sql = "INSERT INTO audit_logs (action, performedBy, details, ip_address) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getInstance().getConnection();

@@ -193,6 +193,27 @@
                 <small class="text-primary opacity-75">Realistic Hardware Simulator</small>
             </a>
         </div>
+        <div class="col-6 col-md-4">
+            <a href="${pageContext.request.contextPath}/atm/loans" class="action-tile text-center border-warning">
+                <i class="bi bi-bank2 text-warning"></i>
+                <span class="fw-bold text-warning">Money &amp; Gold Loans</span>
+                <small class="text-muted">EMI Calculator &amp; 75% LTV Gold</small>
+            </a>
+        </div>
+        <div class="col-6 col-md-4">
+            <a href="${pageContext.request.contextPath}/atm/support" class="action-tile text-center border-danger">
+                <i class="bi bi-life-preserver text-danger"></i>
+                <span class="fw-bold text-danger">Customer Grievance &amp; Disputes</span>
+                <small class="text-muted">ATM Cash &amp; Card Security Issues</small>
+            </a>
+        </div>
+        <div class="col-12 col-md-4">
+            <a href="${pageContext.request.contextPath}/atm/chat" class="action-tile text-center border-info">
+                <i class="bi bi-robot text-info"></i>
+                <span class="fw-bold text-info">Apex HelpBot AI</span>
+                <small class="text-muted">24x7 Problem Solving Assistant</small>
+            </a>
+        </div>
     </div>
 
     <!-- Recent Activity Table -->

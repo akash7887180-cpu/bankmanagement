@@ -16,6 +16,7 @@ public interface AccountDAO {
     List<Account> findByCustomerId(int customerId);
     List<Account> findAll();
     int create(Account account);
+    boolean updateBalance(int accountId, double newBalance);
     boolean updateBalance(int accountId, double newBalance, Connection conn);
     boolean updateStatus(int accountId, AccountStatus status);
     double getTotalBankBalance();

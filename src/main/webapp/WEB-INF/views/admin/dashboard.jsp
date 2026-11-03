@@ -44,6 +44,12 @@
         <a href="${pageContext.request.contextPath}/admin/reports" class="btn btn-outline-dark btn-sm">
             <i class="bi bi-bar-chart-fill me-1"></i> Financial Reports
         </a>
+        <a href="${pageContext.request.contextPath}/admin/loans" class="btn btn-outline-warning btn-sm">
+            <i class="bi bi-bank2 me-1"></i> Loans &amp; Gold
+        </a>
+        <a href="${pageContext.request.contextPath}/admin/tickets" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-life-preserver me-1"></i> Grievances &amp; Tickets
+        </a>
     </div>
 </div>
 

@@ -28,9 +28,10 @@ public class AuthenticationFilter implements Filter {
         String contextPath = request.getContextPath();
         String path = uri.substring(contextPath.length());
 
-        // Allow static assets, error pages, and login endpoints
+        // Allow static assets, error pages, health checks, public loans/support, chatbot and login endpoints
         if (path.isEmpty() || path.equals("/") || path.startsWith("/assets/") || path.equals("/login") || path.equals("/admin/login")
-                || path.equals("/atm/login") || path.equals("/otp") || path.equals("/index.jsp")) {
+                || path.equals("/atm/login") || path.equals("/otp") || path.equals("/index.jsp") || path.equals("/health.jsp")
+                || path.startsWith("/api/chatbot") || path.equals("/chat") || path.equals("/loans") || path.equals("/support") || path.equals("/forgot-pin")) {
             chain.doFilter(req, res);
             return;
         }

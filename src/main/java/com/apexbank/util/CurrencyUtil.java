@@ -13,6 +13,19 @@ public class CurrencyUtil {
         return "₹ " + RUPEE_FORMAT.format(amount);
     }
 
+    public static String format(java.math.BigDecimal amount) {
+        if (amount == null) return "₹ 0.00";
+        return format(amount.doubleValue());
+    }
+
+    public static String formatINR(double amount) {
+        return format(amount);
+    }
+
+    public static String formatINR(java.math.BigDecimal amount) {
+        return format(amount);
+    }
+
     public static String formatWithoutSymbol(double amount) {
         return RUPEE_FORMAT.format(amount);
     }

@@ -96,6 +96,10 @@ public abstract class Account implements Serializable {
         return accountNumber;
     }
 
+    public String getMaskedAccountNumber() {
+        return com.apexbank.util.MaskingUtil.maskAccountNumber(accountNumber);
+    }
+
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
