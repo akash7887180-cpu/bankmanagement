@@ -95,7 +95,8 @@ public class ChatbotService {
         }
 
         // 3. PROBLEM SOLVING: LOST OR STOLEN CARD / EMERGENCY BLOCK
-        if (text.contains("lost card") || text.contains("stolen") || text.contains("block card") ||
+        if ((text.contains("card") && (text.contains("lost") || text.contains("block") || text.contains("lock") || text.contains("freeze") || text.contains("missing"))) ||
+            text.contains("lost card") || text.contains("stolen") || text.contains("block card") ||
             text.contains("lock card") || text.contains("freeze card") || text.contains("card missing") ||
             text.contains("unauthorized") || text.contains("fraud") || text.contains("hacked")) {
 

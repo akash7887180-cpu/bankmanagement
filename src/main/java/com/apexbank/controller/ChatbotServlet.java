@@ -43,27 +43,31 @@ public class ChatbotServlet extends BaseServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String userInput = null;
+        String userInput = req.getParameter("message");
 
-        // Try reading JSON body first
-        String contentType = req.getContentType();
-        if (contentType != null && contentType.contains("application/json")) {
-            try (BufferedReader reader = req.getReader()) {
+        if (userInput == null || userInput.trim().isEmpty()) {
+            try {
                 StringBuilder sb = new StringBuilder();
                 String line;
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
+                try (BufferedReader reader = req.getReader()) {
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line);
+                    }
                 }
-                JsonObject json = JsonParser.parseString(sb.toString()).getAsJsonObject();
-                if (json.has("message")) {
-                    userInput = json.get("message").getAsString();
+                String body = sb.toString().trim();
+                if (!body.isEmpty()) {
+                    if (body.startsWith("{")) {
+                        JsonObject json = JsonParser.parseString(body).getAsJsonObject();
+                        if (json.has("message")) {
+                            userInput = json.get("message").getAsString();
+                        }
+                    } else {
+                        userInput = body;
+                    }
                 }
-            } catch (Exception ignored) {}
-        }
-
-        // Fallback to form parameter
-        if (userInput == null || userInput.trim().isEmpty()) {
-            userInput = req.getParameter("message");
+            } catch (Exception e) {
+                System.err.println("Chatbot body parse note: " + e.getMessage());
+            }
         }
 
         Customer customer = getSessionCustomer(req);
